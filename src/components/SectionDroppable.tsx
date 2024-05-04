@@ -37,9 +37,9 @@ export default function SectionDroppable({
       const cardHeight = rect.height / updatedCards.length
       let insertionIndex = Math.floor(mouseY / cardHeight)
 
-      if (insertionIndex < draggedCardIndex) {
+      if (insertionIndex < dropIndex) {
         insertionIndex -= 1
-      } else if (insertionIndex === draggedCardIndex) {
+      } else if (insertionIndex === dropIndex) {
         return
       } else {
         insertionIndex += 1
