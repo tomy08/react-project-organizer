@@ -1,29 +1,18 @@
 import React from 'react'
-import { useDraggable } from '@dnd-kit/core'
-import { CSS } from '@dnd-kit/utilities'
 
 type TaskDraggableProps = {
   id: string
-  children: React.ReactNode
+
+  title: string
 }
 
-export default function TaskDraggable({ children, id }: TaskDraggableProps) {
-  const { attributes, listeners, setNodeRef, transform } = useDraggable({
-    id: 'draggable',
-  })
-  const style = {
-    transform: CSS.Translate.toString(transform),
-  }
-
+export default function TaskDraggable({ id, title }: TaskDraggableProps) {
   return (
-    <button
-      ref={setNodeRef}
-      style={style}
-      {...listeners}
-      {...attributes}
-      className="w-[95%] bg-slate-800 text-white rounded-md text-left pl-1"
+    <div
+      draggable
+      className="w-[95%] bg-slate-800 text-white rounded-md text-left p-2 active:cursor-grabbing"
     >
-      {children}
-    </button>
+      {title}
+    </div>
   )
 }

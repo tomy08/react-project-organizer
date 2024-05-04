@@ -1,50 +1,8 @@
 ---
 import Layout from '../layouts/Layout.astro'
-
-import { DndContext } from '@dnd-kit/core'
-import SectionDroppable from '../components/section-droppable'
-import TaskDraggable from '../components/task-draggable'
+import Kanban from '../components/Kanban'
 ---
 
 <Layout title="Project Organizer">
-  <DndContext>
-    <main class="p-4 w-full min-h-full grid grid-cols-3 gap-8">
-      <SectionDroppable id="todo">
-        <header
-          class="p-1 text-center font-bold w-full bg-blue-800 rounded-t-md"
-        >
-          Todo
-        </header>
-        <div class="p-2 gap-2 w-full flex justify-center items-center flex-col">
-          <TaskDraggable id="task-1">Task 1</TaskDraggable>
-          <TaskDraggable id="task-2">Task 2</TaskDraggable>
-          <TaskDraggable id="task-3">Task 3</TaskDraggable>
-        </div>
-      </SectionDroppable>
-      <SectionDroppable id="in-progress">
-        <header
-          class="p-1 text-center font-bold w-full bg-green-900 rounded-t-md"
-        >
-          In Progress
-        </header>
-        <div class="p-2 gap-2 w-full flex justify-center items-center flex-col">
-          <TaskDraggable id="task-7">Task 7</TaskDraggable>
-          <TaskDraggable id="task-8">Task 8</TaskDraggable>
-          <TaskDraggable id="task-9">Task 9</TaskDraggable>
-        </div>
-      </SectionDroppable>
-      <SectionDroppable id="done">
-        <header
-          class="p-1 text-center font-bold w-full bg-purple-800 rounded-t-md"
-        >
-          Done
-        </header>
-        <div class="p-2 gap-2 w-full flex justify-center items-center flex-col">
-          <TaskDraggable id="task-4">Task 4</TaskDraggable>
-          <TaskDraggable id="task-5">Task 5</TaskDraggable>
-          <TaskDraggable id="task-6">Task 6</TaskDraggable>
-        </div>
-      </SectionDroppable>
-    </main>
-  </DndContext>
+  <Kanban />
 </Layout>
