@@ -10,13 +10,7 @@ export default function PreviewNewTask({ field }: Props) {
   const { cards, setCards } = useContext(CardsContext)!
   const [value, setValue] = useState('')
 
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setValue(e.target.value)
-  }
-  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
-    e.preventDefault()
-    if (!value) return
-
+  const addTask = () => {
     setCards([
       ...cards,
       {
@@ -26,6 +20,23 @@ export default function PreviewNewTask({ field }: Props) {
       },
     ])
     setValue('')
+  }
+
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setValue(e.target.value)
+  }
+  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault()
+    if (!value) return
+
+    addTask()
+  }
+
+  const handleKeyDown = (e: React.KeyboardEvent<HTMLInputElement>) => {
+    if (e.key === 'Enter' && value) {
+      e.preventDefault()
+      addTask()
+    }
   }
   const handleAbort = () => {
     setValue('')
@@ -40,6 +51,7 @@ export default function PreviewNewTask({ field }: Props) {
         className="w-[95%] border-2 border-slate-800 bg-transparent text-white rounded-md text-left p-2"
         placeholder="Add new task..."
         onChange={handleChange}
+        onKeyDown={handleKeyDown}
         value={value}
       />
 
