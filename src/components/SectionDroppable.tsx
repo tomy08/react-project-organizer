@@ -72,7 +72,7 @@ export default function SectionDroppable({
         {cards
           .filter((card) => card.field === id)
           .map((card) => (
-            <Task key={card.id} id={card.id} title={card.title} />
+            <Task key={card.id} card={card} />
           ))}
         <AddTask field={id} />
       </div>
