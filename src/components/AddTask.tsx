@@ -9,7 +9,7 @@ type Props = {
 export default function AddTask({ field }: Props) {
   const { cards, setCards } = useContext(CardsContext)!
   const [value, setValue] = useState('')
-  const [badge, setBadge] = useState<string[]>([]) // Estado para el array de badges
+  const [badge, setBadge] = useState<string[]>([])
 
   const addTask = () => {
     setCards([
@@ -22,7 +22,7 @@ export default function AddTask({ field }: Props) {
       },
     ])
     setValue('')
-    setBadge([]) // Limpia el array de badges después de agregar la tarea
+    setBadge([])
   }
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -49,7 +49,6 @@ export default function AddTask({ field }: Props) {
   }
 
   const handleBadgeChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    // Divide el valor de los badges separados por comas en un array
     const badgesArray = e.target.value.split(',').map((badge) => badge.trim())
     setBadge(badgesArray)
   }
@@ -73,7 +72,8 @@ export default function AddTask({ field }: Props) {
         } w-[95%] border-2 border-slate-800 bg-transparent text-white rounded-md text-left p-2 mt-4`}
         placeholder="Add badge (separate multiple badges with commas)..."
         onChange={handleBadgeChange}
-        value={badge.join(', ')} // Muestra los badges separados por comas en el input
+        onKeyDown={handleKeyDown}
+        value={badge.join(', ')}
       />
 
       <div
