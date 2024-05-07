@@ -9,12 +9,9 @@ type SectionDroppableProps = {
   bgColor: string
 }
 
-export default function SectionDroppable({
-  id,
-  title,
-  bgColor,
-}: SectionDroppableProps) {
+export default function Column({ id, title, bgColor }: SectionDroppableProps) {
   const { cards, setCards } = useContext(CardsContext)!
+
   const handleDrop = (event: React.DragEvent<HTMLDivElement>) => {
     event.preventDefault()
     const cardId = event.dataTransfer.getData('text/plain')
@@ -45,23 +42,16 @@ export default function SectionDroppable({
         insertionIndex += 1
       }
 
-      // Insert the dragged card at the calculated insertion index
       updatedCards.splice(insertionIndex, 0, draggedCard)
 
-      // Update the state with the new card order
       setCards(updatedCards)
     }
   }
 
-  const allowDrop = (event: React.DragEvent<HTMLDivElement>) => {
-    event.preventDefault()
-  }
-
   return (
     <section
-      className="bg-slate-900 rounded-md flex flex-col"
+      className="bg-slate-900 rounded-md flex flex-col min-w-44 "
       onDrop={handleDrop}
-      onDragOver={allowDrop}
     >
       <header
         className={`p-1 text-center font-bold w-full ${bgColor} rounded-t-md`}
